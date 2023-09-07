@@ -1,0 +1,86 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {"games":{	
+            "$id": "#games",		
+            "title": "Game",		
+            "description": "Data to add a new game.",		
+            "type": "object",		
+            "properties": {
+                "name": {
+                "description": "Name of a game in the blog",   
+                "type": "string"
+                },
+                "genre": {
+                "description": "Genre of the game",
+                "type": "string"
+                },
+                "releaseYear": {
+                "description": "Release year of the game",
+                "type": "integer"
+                },
+                "description": {
+                "description": "Description of the game",
+                "type": "string"
+                },
+                "company": {
+                "description": "Company that made the game",
+                "type": "string"
+                },
+                "platforms": {
+                "description": "Platforms the game is released in",
+                "type": "string"
+                }
+        }, 			
+        "required": ["name", "description", "company"],
+        "additionalProperties": false 
+    }, "gamesCreated" :{
+        "$id": "#gameCreated",
+        "title": "Game Created",
+        "description": "Confirmation of a successful game update/creation",
+        "type": "object",
+        "required": ["name", "description", "company"],
+        "additionalProperties": false,
+        "properties": {
+          "ID": {
+            "description": "ID of the new/updated user record",
+            "type": "integer"
+        }
+      }
+    
+    }
+},
+    "id": "/games",
+    "title": "games",
+    "description": "A game in the blog",
+    "type": "object",
+    "properties": {
+    "name": {
+    "description": "Name of a game in the blog",   
+    "type": "string"
+    },
+    "genre": {
+    "description": "Genre of the game",
+    "type": "string"
+    },
+    "releaseYear": {
+    "description": "Release year of the game",
+    "type": "integer"
+    },
+    "description": {
+    "description": "Description of the game",
+    "type": "string"
+    },
+    "company": {
+    "description": "Company that made the game",
+    "type": "string"
+    },
+    "platforms": {
+    "description": "Platforms the game is released in",
+    "type": "string"
+    }
+    
+    },
+    
+    "required": ["name", "genre", "releaseYear"]
+    
+    }

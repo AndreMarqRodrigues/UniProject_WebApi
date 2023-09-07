@@ -1,0 +1,382 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Back End Coursework API
+  description: A simple gaming blog API.
+  contact:
+    name: Andre Rodrigues
+    email: lagomarqua@coventry.ac.uk
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  - url: 'https://ecology-fiction-3000.codio-box.uk/api/v1'
+    description: Development server
+tags:
+  - name: Users
+    description: API endpoints for user management.
+  - name: Games
+    description: Access and perform CRUD operations on blog entries.
+  - name: Review
+    description: Perform a review on a game entry.
+  - name: Rate
+    description: Give a rating on a game entry.
+  - name: cheapsharkapi
+    description: Get the name and the best prices of a game
+  - name: Trivia Questions Api
+    description: Get a random trivia question related to video games
+paths:
+    /users/{id}:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric id of the user
+      get:
+        tags:
+          - Users
+        description:
+          Get user by id.
+        responses:
+          '200':
+            description: View of a user's record, excluding password.
+            content:
+              application/json:
+                schema:
+                  $ref: ./users.schema.json#/definitions/user
+          '403': 
+            description: Non-admin users can only view their own record.
+          '404':
+            description: User not found.
+
+
+      put:
+        tags:
+          - Users
+        description:
+          Update user by ID.
+        responses:
+          '200':
+            description: Update confirmation and link to record.
+          '404':
+            description: User was not found in the DB.
+
+      delete:
+        tags:
+          - Users
+        description:
+          Delete user by ID.
+        responses:
+            '200':
+              description: Delete confirmation.
+            '401':
+              description: Only admin users can delete user accounts.
+            '404':
+              description: User was not found in the DB.
+
+    /users:
+      summary: Represents an individual user
+      description: >
+        This resource represents an individual user in the system.
+        Each user is identified by a numeric id.
+      post:
+        tags:
+          - Users
+        description:
+          Create a new user account.
+        requestBody:
+          description: All new user data.
+          required: true
+          content:
+            application/json:
+              schema: 
+                $ref: ./users.schema.json#/definitions/user
+        responses:
+          '201':
+            description: User created
+            content:
+              application/json:
+                schema:
+                  $ref: ./users.schema.json#/definitions/userCreated
+        
+      get:
+        tags:
+          - Users
+        description:
+          Get all users.
+        responses:
+          '200':
+            description: View all the users records excluding.
+            content:
+              application/json:
+                schema:
+                  $ref: ./users.schema.json#/definitions/user
+          '403': 
+            description: Non-admin users can not get all the users.
+    
+    /games/{id}:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric id of the game
+      get:
+        tags:
+          - Games
+        description: Get game by id.
+        responses:
+          '200': 
+            description : View a specific game record.
+          '403':
+            description : When a game is not found.
+      
+      put:
+        tags:
+          - Games
+        description: Update a game by ID.
+        responses:
+          '200':
+            description: Update cnfirmation and link to record
+          '404':
+            description: Game was not found in the DB.
+          '403':
+            description: Permission denied.
+      
+      delete:
+        tags:
+          - Games
+        description: Delete game by ID.
+        responses:
+          '204':
+            description: Delete confirmation.
+          '403':
+            description: Permission denied.
+          '404':
+            description: Game was not found in the DB.
+    
+    /games:
+      summary: Represents an individual game
+      description: >
+        This resource represents an individual game in the system.
+        Each game is identified by a numeric id.
+      post:
+        tags:
+          - Games
+        description:
+          Create a new game record.
+        requestBody:
+          description: All new game data
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: ./games.schema.json#/definitions/games
+        responses:
+          '201':
+            description: Game created
+            content:
+              application/json:
+                schema:
+                  $ref: ./games.schema.json#/definitions/gamesCreated
+      
+      get:
+        tags:
+          - Games
+        description:
+          Get all games.
+        responses:
+          '200':
+            description: View all the games records.
+            content:
+              application/json:
+                schema:
+                  $ref: ./games.schema.json#/definitions/games
+    
+    /games/{id}/review:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric id of the game that we are reviewing.
+      summary: Represents an individual user
+      description: >
+        This resource represents an individual user in the system.
+        Each user is identified by a numeric id.
+      post:
+        tags:
+          - Review
+        description:
+          Create a new review record.
+        requestBody:
+          description: All new review data
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: ./reviews.schema.json#/definitions/reviews
+        responses:
+          '201':
+            description: Review created
+            content:
+              application/json:
+                schema:
+                  $ref: ./reviews.schema.json#/definitions/reviewCreated
+      
+      get:
+        tags:
+          - Review
+        description:
+          Get all reviews of a game.
+        responses:
+          '200':
+            description: View all the reviews in a game.
+            content:
+              application/json:
+                schema:
+                  $ref: ./reviews.schema.json#/definitions/reviews
+    
+    /games/{id}/review/{id}:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric id of the review.
+      get:
+        tags:
+          - Review
+        description: Get a review by id.
+        responses:
+          '200': 
+            description : View a specific review record.
+          '403':
+            description : When a review is not found.
+            
+      put:
+        tags:
+          - Review
+        description: Update a review by ID.
+        responses:
+          '200':
+            description: Update cnfirmation and link to record
+          '404':
+            description: Review was not found in the DB.
+          '403':
+            description: Permission denied. 
+            
+      delete:
+        tags:
+          - Review
+        description: Delete a review by ID.
+        responses:
+          '204':
+            description: Delete confirmation.
+          '403':
+            description: Permission denied. Only either te owner of the review or the admin can delete.
+          '404':
+            description: Review was not found in the DB.
+            
+    /games/{id}/rates/{id}:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric id of the rate.
+            
+      delete:
+        tags:
+          - Rate
+        description: Delete a rate by ID.
+        responses:
+          '204':
+            description: Delete confirmation.
+          '403':
+            description: Permission denied. Only either te owner of the review or the admin can delete.
+          '404':
+            description: Review was not found in the DB.
+    
+    /games/{id}/rates/:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric id of the review.      
+      get:
+        tags:
+          - Rate
+        description: Get a rate by id.
+        responses:
+          '200': 
+            description : View a specific rate record.
+          '403':
+            description : When the average rate is not found.
+            
+      post:
+        tags:
+          - Rate
+        description:
+          Create a new rate record.
+        requestBody:
+          description: All new rate data
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: ./gamesRating.schema.json#/definitions/rates
+        responses:
+          '201':
+            description: Review created
+            content:
+              application/json:
+                schema:
+                  $ref: ./gamesRating.schema.json#/definitions/ratesCreated
+                  
+    /cheapsharkapi:
+      summary: Gets a game and its best prices
+      description: >
+        This resource represents an individual game and its best prices.
+      get:
+        tags:
+          - cheapsharkapi
+        description: 
+          Get a game and prices.
+        responses:
+          '200':
+            description: View a gmae and best prices.
+            content:
+              application/json:
+                schema:
+                  $ref: ./CheapsharkApi.schema.json#/definitions/gameandprice
+          '404': 
+            description: A game was not found. 
+    
+    /triviaquestion:
+      summary: Gets a random trivia question about video games.
+      description: >
+        This resource gets a random trivia question about video games.
+      get:
+        tags:
+          - Trivia Questions Api
+        description: 
+          Get a question and answers.
+        responses:
+          '200':
+            description: View the random trivia qustion and its answers.
+            content:
+              application/json:
+                schema:
+                  $ref: ./TriviaQuestionApi.schema.json#/definitions/triviaquestion
+          '404': 
+            description: The question was not found. 
+    

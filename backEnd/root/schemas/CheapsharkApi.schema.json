@@ -1,0 +1,39 @@
+{
+    "$schema":"http://json-schema.org/draft-04/schema#",
+    "definitions": {
+      "gameandprice": {
+				"$id": "#gameandprice",
+				"title": "Game and Price",
+				"description": "Confirmation of a successful game and price fetch ",
+				"type": "object",
+				"properties": {
+				  "title": {
+					"description": "title of the game",
+					"type": "string"
+				},
+				"Best Prices": {
+				  "description": "Best prices of the game",
+				  "type": "string"
+				}
+    }
+  }
+},
+    "id":"/cheapsharkApi",
+    "title":"cheapsharkApi",
+    "description":"Search a game and its price",
+      "type":"object",
+      "properties":{
+        "title":{
+          "description":"Title of the game",
+          "type":"string"
+        },
+        "Best Prices":{
+          "description":"Best prices of the game",
+          "type":"array"
+        }
+      },
+      "required": [
+          "name",
+          "bio"
+      ]
+    }

@@ -1,0 +1,69 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions":{
+      "reviews": {
+        "$id": "#review",
+        "tittle": "review",
+        "description" : "Data to add a new review",
+        "type": "object",
+        "properties": {
+          "allText": {
+            "description": "The review text",
+            "type": "string"
+          },
+          "gamesID": {
+            "description": "ID of the game this review is about",
+            "type": "integer",
+            "minimum": 0
+          },
+          "userID": {
+            "description": "ID of the user making this review",
+            "type": "integer",
+            "minimum": 0
+          }
+      },
+      "required": ["allText"],
+      "additionalProperties": false
+    }, "reviewCreated": {
+      "$id": "#reviewCreated",
+      "title": "Review Created",
+      "description": "Confirmation of a successful review update/creation",
+      "type": "object",
+      "properties": {
+        "ID": {
+          "description": "ID of the updated review",
+          "type": "string"
+        },
+        "Created":{
+          "description": "Status of the update",
+          "type": "boolean"
+        }
+      },
+      "required": ["alltext"],
+      "additionalProperties": false
+      }
+    },
+  "id": "/reviews",
+	"title": "reviews",
+	"description": "A review of a game",
+	"type": "object",
+        "properties": {
+          "allText": {
+            "description": "The review text",
+            "type": "string"
+          },
+          "gamesID": {
+            "description": "ID of the game this review is about",
+            "type": "integer",
+            "minimum": 0
+          },
+          "userID": {
+            "description": "ID of the user making this review",
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": ["allText"],
+        "additionalProperties": false
+      }
+  

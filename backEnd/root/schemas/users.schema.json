@@ -1,0 +1,94 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"definitions": {
+			"user": {	
+				"$id": "#user",		
+				"title": "User",		
+				"description": "Data to register a new user.",		
+				"type": "object",		
+				"properties": {		
+					"username": {		
+					"description": "Username",		
+					"type": "string"		
+				},		
+					"dataRegistered": {		
+					"description": "Date of the registration",
+					"type": "string"		
+				},		
+					"password": {		
+					"description": "Password of the account",
+					"type": "string"
+				},
+					"passwordSalt": {
+					"description": "Encrypted password of the account",
+					"type": "string"
+				},
+					"email": {
+					"description": "Email associated with the account",
+					"type": "string",
+					"format": "email"
+				},
+					"role": {
+					"description": "Role of the account",
+					"type": "string"
+				}
+			},
+			"required": ["username", "email", "password"],
+			"additionalProperties": false
+			},
+			"userCreated": {
+				"$id": "#userCreated",
+				"title": "User Created",
+				"description": "Confirmation of a successful user update/creation",
+				"type": "object",
+				"required": ["username", "email", "password"],
+				"additionalProperties": false,
+				"properties": {
+				  "ID": {
+					"description": "ID of the new/updated user record",
+					"type": "integer"
+				},
+				"updated": {
+				  "description": "Boolean indicator of success",
+				  "type": "boolean"
+				},
+				"link": {
+				  "description": "Path to retrieve user record",
+				  "type": "string",
+				  "format": "uri"
+				}
+			  }
+			}
+	},
+	"id": "/users",
+	"title": "users",
+	"description": "A user account",
+	"type": "object",
+	"properties": {
+		"username": {
+			"description": "Name of an user in the blog",
+			"type": "string"
+		},
+		"dateRegistered": {
+			"description": "Date of registration of an user",
+			"type": "string"
+		},
+		"password": {
+			"description": "The password of an user account",
+			"type": "string"
+		},
+		"passwordSalt": {
+			"description": "The password of an user with salt",
+			"type": "string"
+		},
+		"email": {
+			"description": "Email of the user account",
+			"type": "string"
+		}
+	},
+	"required": [
+		"username",
+		"password",
+		"email"
+	]
+}

@@ -1,0 +1,56 @@
+{
+    "$schema":"http://json-schema.org/draft-04/schema#",
+    "definitions": {
+      "triviaquestion": {
+        "$id": "#triviaquestion",
+      "title": "Trivia Question",
+      "description": "Confirmation of a successful question and answer fetch ",
+      "type": "object",
+      "properties":{
+        "questionCategory":{
+          "description":"Category of the question",
+          "type":"string"
+        },
+        "question":{
+          "description":"Question",
+          "type":"string"
+        },
+        "right answer":{
+            "description": "Corrrect answer",
+            "type": "string"
+        },
+        "wrong answer":{
+            "description": "Wrong answers",
+            "type": "string"
+        }
+      }
+      }
+      
+    },
+    "id":"/TriviaQuestionApi",
+    "title":"TriviaQuestionApi",
+    "description":"Get a trivia question about video games",
+      "type":"object",
+      "properties":{
+        "questionCategory":{
+          "description":"Category of the question",
+          "type":"string"
+        },
+        "question":{
+          "description":"Question",
+          "type":"string"
+        },
+        "right answer":{
+            "description": "Corrrect answer",
+            "type": "string"
+        },
+        "wrong answer":{
+            "description": "Wrong answers",
+            "type": "string"
+        }
+      },
+      "required": [
+          "name",
+          "bio"
+      ]
+}

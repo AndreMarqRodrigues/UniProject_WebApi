@@ -1,0 +1,61 @@
+{
+    "$schema":"http://json-schema.org/draft-04/schema#",
+    "definitions": {
+      "rates": {
+        "$id": "#rates",
+        "tittle": "rates",
+        "description" : "Integer to add a new rate",
+        "type": "object",
+        "properties":{
+          "rating":{
+            "description":"Raiting with a number between 0 and 5",
+            "type":"integer"
+          },
+          "gameID":{
+            "description":"ID of the game this review is about",
+            "type":"integer"
+          },
+          "userID":{
+            "description":"ID of the user making this review",
+            "type":"integer"
+          }
+        },
+        "required" :["rating"],
+        "additionalProperties": false  
+    },"ratesCreated":{
+      "$id": "#rates",
+      "tittle": "rates",
+      "description" : "Integer to add a new rate",
+      "type": "object",
+      "properties": {
+        "ID" :{
+          "description": "ID of the new rate",
+          "type": "integer"
+        },
+        "Created":{
+          "description": ""
+        }
+      }
+    }
+  },
+    "id":"/rates",
+    "title":"ratings",
+    "description":"Rating a game in the blog ",
+    "type":"object",
+    "properties":{
+      "rating":{
+        "description":"Raiting with a number between 0 and 5",
+        "type":"integer"
+      },
+      "gameID":{
+        "description":"ID of the game this review is about",
+        "type":"integer"
+      },
+      "userID":{
+        "description":"ID of the user making this review",
+        "type":"integer"
+      }
+    },
+    "required":["rating"],
+      "additionalProperties": false
+}
